@@ -3,61 +3,12 @@
 	<head>
 		<title>Node Copter</title>
 		<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	<style>
-		html, body {
-			margin:0;
-			padding:0;
-			background: #333; /* Old browsers */
-			
-			
-
-
-		}
-		.background-screen {
-			position:absolute;
-			top:0;
-			left:0;
-			background-image: url('views/maxresdefault.jpg');
-			background-size: 100%;
-			background-repeat:no-repeat;
-			height:100%;
-			width:100%;
-		}
-		.command-panel {
-			position:absolute;
-			width:100%;
-			height: 200px;
-			margin:10px auto;
-			bottom:0;
-			
-		}
-		.inner-panel {
-			position:relative;
-			width:300px;
-			height:auto;
-			padding:5px;
-			margin:0 auto;
-			
-			background-image: url('views/fade.png')
-		
-
-		}
-
-		.btn {width:90px;}
-		.btn-block {
-			width:300px;
-			margin:auto;
-		}
-		#forwardBtn, #backBtn { margin:5px auto;  display:block;}
-		
-
-
-	</style>
+		<link href="css/style.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="background-screen"></div>
 		<div class="command-panel">
-			
+
 			<div class="inner-panel">
 				<div class="btn-block">
 					<button type="button" class="btn btn-large btn-primary" id="forwardBtn">
@@ -71,7 +22,7 @@
 						hover</button>
 						<button type="button" class="btn btn-large btn-primary" id="rightBtn">
 						right</button>
-					
+
 				</div>
 				<div class="btn-block">
 					<button type="button" class="btn btn-large btn-primary" id="backBtn">
@@ -80,80 +31,45 @@
 				<div class="btn-block">
 					<button type="button" class="btn btn-large btn-info" id="takeoffBtn">
 					Take Off</button>
-					
+
 					<button type="button" class="btn btn-large btn-warning" id="landBtn">
 					Land</button>
 					<button type="button" class="btn btn-large btn-danger" id="recoverBtn">
 				help</button>
 				</div>
-				
+
 			</div>
-			
+
 		</div>
 
-		
+
 		<script src="../js/jquery.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
+
+		<script src="js/sockets.js"></script>
+		<script src="js/flightControls.js"></script>
 		<script>
-		  var socket = io.connect('http://localhost');
-		  socket.on('connect', function () {
-    		//socket.send('hi');
-
-	    		socket.on('message', function (msg) {
-	      				// my msg
-	    		});
-			});
-		  
-		  var ctrlMap = {
-		  		forwardBtn : {evt:'click', action:'forward', value:false},
-		  		rightBtn : {evt:'click', action:'right', value:false},
-		  		leftBtn : {evt:'click', action:'left', value:false},
-		  		backBtn : {evt:'click', action:'back', value:false},
-		  		takeoffBtn : {evt:'click', action:'takeoff', value:false},
-		  		hoverBtn : {evt:'click', action:'hover', value:false},
-		  		landBtn : {evt:'click', action:'land', value:false},
-		  		recoverBtn : {evt:'click', action:'recover', value:false}
-		  };
-
-		  
 
 		  $(function() {
-		  		var flight = {};
 
-		  		flight.setup = function( map ) {
-
-					for(key in ctrlMap){
-			  			obj = ctrlMap[key];
-			  			id = key;
-			  			evtHandlers(id, obj);
-			  		}
-
-		  		}
-
-		  		flight.setup();
 		  		
-		  		function evtHandlers(id, obj){
-		  			return $('#'+id).on( obj.evt, function( evt ){
-			  				socket.send(obj.action);
-					  		
-				  		});
-		  		}
+
 
 		  		$('#backBtn').on( 'click', function( evt ){
 			  				$('.background-screen').css("background-size","100%")
-					  		
+
 				  		});
 		  		$('#forwardBtn').on( 'click', function( evt ){
 			  				$('.background-screen').css("background-size","120%")
-					  		
+
 				  		});
 		  		$('#leftBtn').on( 'click', function( evt ){
 			  				$('.background-screen').css("background-position","left")
-					  		
+
 				  		});
 		  		$('#rightBtn').on( 'click', function( evt ){
 			  				$('.background-screen').css("background-position","right")
-					  		
+
 				  		});
 
 	    });

@@ -1,0 +1,45 @@
+html, body {
+  margin:0;
+  padding:0;
+  background: #333; /* Old browsers */
+
+
+
+
+}
+.background-screen {
+  position:absolute;
+  top:0;
+  left:0;
+  background-image: url('../images/maxresdefault.jpg');
+  background-size: 100%;
+  background-repeat:no-repeat;
+  height:100%;
+  width:100%;
+}
+.command-panel {
+  position:absolute;
+  width:100%;
+  height: 200px;
+  margin:10px auto;
+  bottom:0;
+
+}
+.inner-panel {
+  position:relative;
+  width:300px;
+  height:auto;
+  padding:5px;
+  margin:0 auto;
+
+  background-image: url('../images/fade.png')
+
+
+}
+
+.btn {width:90px;}
+.btn-block {
+  width:300px;
+  margin:auto;
+}
+#forwardBtn, #backBtn { margin:5px auto;  display:block;}
