@@ -1,4 +1,17 @@
-node_modules/
+## .gitignore file for project
+## generic file ignore
+*.lock
+*.DS_Store
+*.swp
+*.out
+## Project file and directory ignore
+build/*
+## IDE Specific ignores
+.idea/*
+*.iml
 *.sublime-project
 *.sublime-workspace
-.DS_Store
+## Node ignore
+node_modules/
+bower_modules/
+apikeys/
